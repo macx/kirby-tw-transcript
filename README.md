@@ -3,6 +3,7 @@
 A Kirby plugin for convenient import, management, and audio sync of podcast transcripts.
 
 ## Features
+
 - Multiline transcript format (Speaker → Timestamp → Text)
 - Panel importer (TXT upload or paste)
 - Preview with validation
@@ -24,6 +25,7 @@ More text content
 ```
 
 **Rules:**
+
 - Line 1: Speaker name
 - Line 2: Timestamp (MM:SS or HH:MM:SS) – optional
 - Line 3+: Text (can span multiple lines)
@@ -46,4 +48,5 @@ composer require technikwuerze/podcast-transcript
 4. Transcript saved as block and synced with player
 
 ## License
+
 MIT

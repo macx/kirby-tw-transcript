@@ -89,6 +89,14 @@ const twTranscriptInterpolate = (template, replacements = {}) => {
   }, template)
 }
 
+const twTranscriptIconMarkup = (type, title, modifier) => {
+  const safeTitle = twTranscriptEscapeHtml(title)
+  const safeType = twTranscriptEscapeHtml(type)
+  const safeModifier = twTranscriptEscapeHtml(modifier)
+
+  return `<span class="tw-transcript-status-icon tw-transcript-status-icon--${safeModifier}" title="${safeTitle}" aria-label="${safeTitle}"><svg class="k-icon" data-type="${safeType}" aria-hidden="true"><use xlink:href="#icon-${safeType}"></use></svg></span>`
+}
+
 const twTranscriptPreviewBlock = {
   name: 'tw-transcript',
   computed: {
@@ -256,7 +264,8 @@ const twTranscriptImporterView = {
         const episodeNumber = Number.isInteger(episode?.episodeNumber)
           ? episode.episodeNumber
           : Number.parseInt(String(episode?.episodeNumber ?? ''), 10)
-        let normalizedEpisodeNumber = Number.isInteger(episodeNumber) && episodeNumber > 0 ? episodeNumber : null
+        let normalizedEpisodeNumber =
+          Number.isInteger(episodeNumber) && episodeNumber > 0 ? episodeNumber : null
 
         if (normalizedEpisodeNumber === null) {
           const titleMatch = String(episode?.title ?? '').match(/(?:^|\s)E?(\d{1,4})(?:\s|$)/i)
@@ -373,19 +382,25 @@ const twTranscriptImporterView = {
 
         if (!result || result.status !== 'ok') {
           throw new Error(
-            result?.message || twTranscriptText(this, 'tw.transcript.error.importFailed', 'Import failed.')
+            result?.message ||
+              twTranscriptText(this, 'tw.transcript.error.importFailed', 'Import failed.')
           )
         }
 
         this.segments = Array.isArray(result.segments) ? result.segments : []
         this.success = twTranscriptInterpolate(
-          twTranscriptText(this, 'tw.transcript.success.detected', '{{ count }} segments detected.'),
+          twTranscriptText(
+            this,
+            'tw.transcript.success.detected',
+            '{{ count }} segments detected.'
+          ),
           { count: this.segments.length }
         )
         await this.searchEpisodes()
       } catch (error) {
         this.error =
-          error?.message || twTranscriptText(this, 'tw.transcript.error.importFailed', 'Import failed.')
+          error?.message ||
+          twTranscriptText(this, 'tw.transcript.error.importFailed', 'Import failed.')
         this.segments = []
       } finally {
         this.loading = false
@@ -438,7 +453,11 @@ const twTranscriptImporterView = {
       this.insertSuccess = ''
 
       if (!this.selectedEpisodeId) {
-        this.insertError = twTranscriptText(this, 'tw.transcript.error.selectEpisode', 'Please select an episode.')
+        this.insertError = twTranscriptText(
+          this,
+          'tw.transcript.error.selectEpisode',
+          'Please select an episode.'
+        )
         return
       }
 
@@ -461,7 +480,8 @@ const twTranscriptImporterView = {
 
         if (!result || result.status !== 'ok') {
           throw new Error(
-            result?.message || twTranscriptText(this, 'tw.transcript.error.insertFailed', 'Insert failed.')
+            result?.message ||
+              twTranscriptText(this, 'tw.transcript.error.insertFailed', 'Insert failed.')
           )
         }
 
@@ -481,7 +501,8 @@ const twTranscriptImporterView = {
         this.insertError = ''
       } catch (error) {
         this.insertError =
-          error?.message || twTranscriptText(this, 'tw.transcript.error.insertFailed', 'Insert failed.')
+          error?.message ||
+          twTranscriptText(this, 'tw.transcript.error.insertFailed', 'Insert failed.')
       } finally {
         this.inserting = false
       }
@@ -493,14 +514,14 @@ const twTranscriptImporterView = {
         <k-header>{{ $t('tw.transcript.area.title') }}</k-header>
         <k-tabs :tab="tab" :tabs="tabs" />
 
-        <k-columns>
+        <k-grid variant="fields" class="k-sections">
           <k-column width="1/2">
-            <k-section :headline="$t('tw.transcript.section.importer')">
+            <k-section :headline="$t('tw.transcript.section.importFile')">
               <k-box theme="info" class="tw-transcript-message-box">
                 {{ $t('tw.transcript.info.importer') }}
               </k-box>
 
-              <k-field :label="$t('tw.transcript.field.file')">
+              <k-field>
                 <k-dropzone @drop="onDropFiles">
                   <k-empty
                     class="tw-transcript-dropzone"
@@ -516,16 +537,28 @@ const twTranscriptImporterView = {
               <k-box v-if="fileName" theme="info" class="tw-transcript-message-box">
                 {{ $t('tw.transcript.message.fileLoaded', { fileName }) }}
               </k-box>
+            </k-section>
 
-              <k-textarea-field
-                :label="$t('tw.transcript.field.transcript')"
-                :value="transcript"
-                :buttons="false"
-                font="monospace"
-                size="large"
-                :placeholder="$t('tw.transcript.placeholder.transcript')"
-                @input="transcript = $event"
-              />
+            <k-section :headline="$t('tw.transcript.section.transcript')">
+              <k-field class="tw-transcript-importer-textarea" input="tw-transcript-importer-textarea-input">
+                <div class="k-input" data-type="textarea">
+                  <div class="k-input-element">
+                    <div class="k-textarea-input" data-size="medium">
+                      <div class="k-textarea-input-wrapper">
+                        <textarea
+                          id="tw-transcript-importer-textarea-input"
+                          class="k-textarea-input-native"
+                          data-font="monospace"
+                          spellcheck="false"
+                          :placeholder="$t('tw.transcript.placeholder.transcript')"
+                          :value="transcript"
+                          @input="transcript = $event.target.value"
+                        ></textarea>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </k-field>
 
               <k-button-group class="tw-transcript-actions">
                 <k-button icon="check" variant="filled" :disabled="loading" @click="parseTranscript">
@@ -620,7 +653,7 @@ const twTranscriptImporterView = {
               </k-button-group>
             </k-section>
           </k-column>
-        </k-columns>
+        </k-grid>
       </k-view>
     </k-panel-inside>
   `,
@@ -678,7 +711,6 @@ const twTranscriptOverviewView = {
         const title = twTranscriptEscapeHtml(episode?.title)
         const panelUrl = twTranscriptEscapeHtml(episode?.panelUrl)
         const slug = twTranscriptEscapeHtml(episode?.slug)
-        const statusColor = episode?.hasTranscriptBlock ? 'var(--color-green-500)' : 'var(--color-red-500)'
         const statusLabel = episode?.hasTranscriptBlock
           ? twTranscriptText(this, 'tw.transcript.status.available', 'Transcript available')
           : twTranscriptText(this, 'tw.transcript.status.missing', 'Transcript missing')
@@ -687,7 +719,9 @@ const twTranscriptOverviewView = {
           episode: episodeNumber,
           name: `<a class="tw-transcript-overview-cell__title" href="${panelUrl}">${title}</a>`,
           slug,
-          status: `<span class="tw-transcript-status-icon" title="${twTranscriptEscapeHtml(statusLabel)}"><k-icon type="circle" style="color:${statusColor}" /></span>`,
+          status: episode?.hasTranscriptBlock
+            ? twTranscriptIconMarkup('check', statusLabel, 'available')
+            : twTranscriptIconMarkup('cancel', statusLabel, 'missing'),
         }
       })
     },

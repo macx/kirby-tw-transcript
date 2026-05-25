@@ -67,6 +67,11 @@
   cursor: pointer;
 }
 
+.tw-transcript-importer-textarea .k-textarea-input-native {
+  min-height: 14rem;
+  resize: vertical;
+}
+
 .tw-transcript-actions {
   margin-top: var(--spacing-4);
 }
@@ -119,6 +124,14 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.tw-transcript-status-icon--available {
+  color: var(--color-green-500);
+}
+
+.tw-transcript-status-icon--missing {
+  color: var(--color-red-500);
 }
 
 @media (min-width: 52rem) {

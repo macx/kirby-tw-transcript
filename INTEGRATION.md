@@ -12,16 +12,20 @@ This checklist ensures smooth integration of the Tw Podcast Transcript plugin in
 ## Integration Steps
 
 ### 1. Verify Plugin Is Loaded
+
 ```bash
 cd /Users/macx/Projects/macx/technikwuerze
 php -r "require 'kirby/bootstrap.php'; echo 'Plugins: ' . count(kirby()->plugins()) . PHP_EOL;"
 ```
+
 Expected: Plugin count ≥ 1 (including tw/podcast-transcript)
 
 ### 2. Update Episode Blueprint
+
 File: `site/blueprints/pages/episode.yml`
 
 Find the `blocks` field and ensure transcript block reference:
+
 ```yaml
 # If using field query:
 blocks: fields/episode-blocks
@@ -33,27 +37,32 @@ blocks:
 ```
 
 ### 3. Test Panel Area Access
+
 - Open Kirby Panel at `http://localhost:8000/panel`
 - Navigate to "Transcript Import" area (if visible)
 - Should display import form
 
 ### 4. Test Block Creation
+
 - Create/edit an episode page
 - Add a "Transcript" block
 - Verify fields appear (headline, intro, segments, repeat speaker toggle)
 
 ### 5. Test Transcript Upload
+
 - Use panel area to upload example transcript
 - Verify parsing works (`/api/transcript/import`)
 - Preview should show detected speakers and segments
 
 ### 6. Test Block Rendering
+
 - Create transcript block with sample data
 - Save episode page
 - View on frontend
 - Verify markup renders correctly
 
 ### 7. Test Player Sync (Optional)
+
 - If Podlove player present on page:
   - Verify timestamp buttons appear
   - Click button → should seek player
@@ -62,6 +71,7 @@ blocks:
 ## Troubleshooting
 
 ### Plugin not detected
+
 ```bash
 # Check Kirby plugin discovery
 ls -la site/plugins/kirby-tw-transcript/index.php
@@ -69,15 +79,18 @@ ls -la site/plugins/kirby-tw-transcript/index.php
 ```
 
 ### "Transcript Import" area not visible
+
 - Clear Panel cache: `site/cache/`
 - Refresh browser (force reload)
 - Check browser console for JS errors
 
 ### Block doesn't render
+
 - Verify blueprint loaded: check `site/blueprints/blocks/` (should include plugin block)
 - Check PHP errors: `php -l site/plugins/kirby-tw-transcript/snippets/blocks/transcript.php`
 
 ### Import API returns 404
+
 - Verify route registration: debug `extensions/api.php`
 - Check kirby() URL: ensure `/api/` prefix works
 - Test: `curl http://localhost:8000/api/transcript/import`
@@ -103,6 +116,7 @@ ls -la site/plugins/kirby-tw-transcript/index.php
 ## Rollback Plan
 
 If issues arise:
+
 1. Rename `site/plugins/kirby-tw-transcript/index.php` → `index.php.bak`
 2. Clear Panel cache: `rm -rf site/cache/*`
 3. Restore old code from git
@@ -118,6 +132,7 @@ If issues arise:
 ## Support
 
 See:
+
 - [README.md](./README.md) - Feature overview
 - [MIGRATION.md](./MIGRATION.md) - Migration details
 - [DEVELOPMENT.md](./DEVELOPMENT.md) - Development guide

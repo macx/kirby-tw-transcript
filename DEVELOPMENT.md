@@ -35,12 +35,13 @@
 
 - **PHP**: PSR-12, no short tags, full type hints
 - **Comments**: English only, brief and precise
-- **CSS**: Mobile-first, use CSS custom properties (--clr-*, --sp-*, etc.)
+- **CSS**: Mobile-first, use CSS custom properties (--clr-_, --sp-_, etc.)
 - **Timestamps**: Always convert to milliseconds for player sync
 
 ### Testing Locally
 
 **Transcript Format** (multiline, TXT):
+
 ```
 Speaker
 MM:SS or HH:MM:SS
@@ -52,6 +53,7 @@ Text content
 ```
 
 **Example**:
+
 ```
 David
 07:08
@@ -67,29 +69,31 @@ Thanks for listening!
 ```
 
 **Expected Parsing**:
+
 ```php
 [
   [
     'speaker' => 'David',
     'timestamp' => '07:08',
-    'text' => 'Ich bedanke mich fürs Zuhören...'
+    'text' => 'Ich bedanke mich fürs Zuhören...',
   ],
   [
     'speaker' => 'David',
     'timestamp' => '07:15',
-    'text' => '[Musik]'
+    'text' => '[Musik]',
   ],
   [
     'speaker' => 'Host',
     'timestamp' => '08:00',
-    'text' => 'Thanks for listening!'
-  ]
-]
+    'text' => 'Thanks for listening!',
+  ],
+];
 ```
 
 ### API Testing
 
 **Import Endpoint** (via curl):
+
 ```bash
 curl -X POST \
   http://localhost:8000/api/transcript/import \
@@ -97,6 +101,7 @@ curl -X POST \
 ```
 
 **Expected Response**:
+
 ```json
 {
   "status": "ok",
@@ -111,6 +116,7 @@ curl -X POST \
 ### Add a new toggle option to transcript block
 
 1. Edit `blueprints/blocks/transcript.yml`:
+
 ```yaml
 myNewOption:
   type: toggle
@@ -118,6 +124,7 @@ myNewOption:
 ```
 
 2. Use in `snippets/blocks/transcript.php`:
+
 ```php
 $myNewOption = $block->myNewOption()->toBool();
 ```
@@ -125,6 +132,7 @@ $myNewOption = $block->myNewOption()->toBool();
 ### Extend the parser for new timestamp formats
 
 1. Edit `lib/parser.php`, add format detection:
+
 ```php
 public static function parse(string $txt): array {
   // Add new regex pattern for format detection
@@ -148,12 +156,14 @@ public static function parse(string $txt): array {
 ## Debugging
 
 **Enable Panel area debugging**:
+
 ```php
 // In site/config/config.php
 'debug' => true,
 ```
 
 **Check parser output**:
+
 ```bash
 php -r "
   require_once 'site/plugins/kirby-tw-transcript/lib/parser.php';

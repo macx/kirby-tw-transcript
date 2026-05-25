@@ -71,8 +71,11 @@
       font-weight: var(--fw-medium);
       font-family: inherit;
       white-space: nowrap;
-      transition: background-color var(--transition-short), border-color var(--transition-short),
-        color var(--transition-short), box-shadow var(--transition-short),
+      transition:
+        background-color var(--transition-short),
+        border-color var(--transition-short),
+        color var(--transition-short),
+        box-shadow var(--transition-short),
         transform var(--transition-short);
 
       .tw-transcript-timestamp-icon {
@@ -83,11 +86,13 @@
         background: var(--tw-transcript-timestamp-icon-bg);
         position: relative;
         opacity: 0.96;
-        transition: background-color var(--transition-short), opacity var(--transition-short),
+        transition:
+          background-color var(--transition-short),
+          opacity var(--transition-short),
           transform var(--transition-short);
 
         &::before {
-          content: "";
+          content: '';
           position: absolute;
           left: 0.34rem;
           top: 50%;
@@ -95,11 +100,12 @@
           height: 0;
           border-style: solid;
           border-width: 0.16rem 0 0.16rem 0.26rem;
-          border-color: transparent transparent transparent
-            var(--tw-transcript-timestamp-icon-fg);
+          border-color: transparent transparent transparent var(--tw-transcript-timestamp-icon-fg);
           transform: translateY(-50%);
-          transition: border-left-color var(--transition-short),
-            transform var(--transition-short), opacity var(--transition-short);
+          transition:
+            border-left-color var(--transition-short),
+            transform var(--transition-short),
+            opacity var(--transition-short);
         }
       }
 
@@ -123,14 +129,14 @@
         outline: none;
       }
 
-      &[data-player-pending="1"] {
+      &[data-player-pending='1'] {
         border-style: dashed;
         color: color-mix(in srgb, var(--clr-primary) 78%, var(--clr-text-light));
         opacity: 0.7;
       }
 
-      &[data-player-active="1"],
-      &[aria-current="true"] {
+      &[data-player-active='1'],
+      &[aria-current='true'] {
         --tw-transcript-timestamp-icon-bg: var(--clr-text-bright);
         --tw-transcript-timestamp-icon-fg: var(--clr-primary);
 
