@@ -1,0 +1,22 @@
+# Node
+node_modules/
+
+# Build artifacts
+dist/
+.dev/
+
+# Composer
+vendor/
+composer.lock
+
+# Tooling cache
+*.tsbuildinfo
+.eslintcache
+
+# Logs
+*.log
+
+# OS / Editor
+.DS_Store
+.vscode/
+.idea/

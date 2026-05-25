@@ -1,0 +1,102 @@
+# Example Transcript (TXT format)
+
+This file demonstrates the expected format for transcript imports.
+
+## Format Rules
+
+- **Line 1**: Speaker name
+- **Line 2**: Timestamp (MM:SS or HH:MM:SS)
+- **Line 3+**: Transcript text (can span multiple lines)
+- **Blank line**: Separator between segments
+
+Timestamps are optional; if omitted, the segment will have no sync button.
+
+## Example
+
+```
+David
+07:08
+Ich bedanke mich fürs Zuhören und wünsche euch fröhliche Weihnachten und einen guten Rutsch ins neue Jahr. Bis dahin!
+
+David
+07:15
+[Musik]
+
+Host
+08:00
+Thanks for listening. See you next time!
+
+Guest
+08:10
+Goodbye everyone!
+```
+
+## Valid Variations
+
+### Timestamp with hours
+```
+Host
+01:30:45
+Longer discussion about advanced topics
+```
+
+### Multi-line text
+```
+Host
+05:30
+This is the first line of text.
+This is the second line, continuing the thought.
+And this is the third line.
+```
+
+### Single speaker (appears multiple times)
+```
+Host
+00:10
+Welcome to the show
+
+Host
+00:25
+Let's get started
+
+Host
+01:00
+First topic of discussion
+```
+Will display "Host" once above transcript (toggle with `repeatSpeakerPerSegment` if single speaker).
+
+### No timestamp (segment won't sync to player)
+```
+Announcer
+[Music intro]
+```
+
+## Testing the Parser
+
+Use the import endpoint to validate format:
+
+```bash
+curl -X POST \
+  http://localhost:8000/api/transcript/import \
+  -H "Content-Type: text/plain" \
+  -d @example-transcript.txt
+```
+
+Expected response:
+```json
+{
+  "status": "ok",
+  "segments": 4,
+  "count": 4,
+  "previewUrl": "..."
+}
+```
+
+## Common Issues
+
+| Issue | Fix |
+|-------|-----|
+| No segments parsed | Ensure blank lines between segments |
+| Timestamp not detected | Use MM:SS or HH:MM:SS format on line 2 |
+| Text not captured | Ensure speaker is on line 1, timestamp on line 2, text on line 3+ |
+| Extra spaces | Trim leading/trailing whitespace (parser handles it) |

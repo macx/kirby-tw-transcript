@@ -1,0 +1,128 @@
+/* Panel styles for Kirby TW Transcript plugin */
+
+.tw-transcript-preview {
+  border: 1px solid var(--color-border, #ddd);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  background: var(--color-background, #fff);
+  color: var(--color-text, #222);
+  display: grid;
+  gap: 0.5rem;
+}
+
+.tw-transcript-preview__kicker {
+  margin: 0;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-light, #666);
+  font-weight: 600;
+}
+
+.tw-transcript-preview__title {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.3;
+  font-weight: 600;
+  color: var(--color-text, #222);
+}
+
+.tw-transcript-preview__summary-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.tw-transcript-preview__summary-card {
+  border: 1px solid var(--color-border, #ddd);
+  border-radius: 0.3rem;
+  padding: 0.4rem 0.5rem;
+  background: rgba(0, 0, 0, 0.02);
+}
+
+.tw-transcript-preview__summary-value {
+  margin: 0;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--color-text-light, #666);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.tw-transcript-preview__summary-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-text-light, #666);
+}
+
+.tw-transcript-dropzone {
+  min-height: 10rem;
+  cursor: pointer;
+}
+
+.tw-transcript-actions {
+  margin-top: var(--spacing-4);
+}
+
+.tw-transcript-message-box {
+  margin-bottom: var(--spacing-3);
+}
+
+.tw-transcript-preview-list {
+  margin: 0;
+  padding-left: 1.25rem;
+  display: grid;
+  gap: var(--spacing-4);
+}
+
+.tw-transcript-preview-list__item {
+  padding-left: 0.25rem;
+}
+
+.tw-transcript-preview-list__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+  align-items: baseline;
+}
+
+.tw-transcript-preview-list__meta span,
+.tw-transcript-preview-list__text,
+.tw-transcript-preview-list__more {
+  color: var(--color-text-light, #666);
+}
+
+.tw-transcript-preview-list__text,
+.tw-transcript-preview-list__more {
+  margin: 0.35rem 0 0;
+}
+
+.tw-transcript-overview-cell__title {
+  color: inherit;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.tw-transcript-overview-cell__title:hover,
+.tw-transcript-overview-cell__title:focus {
+  text-decoration: underline;
+}
+
+.tw-transcript-status-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 52rem) {
+  .tw-transcript-preview__summary-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

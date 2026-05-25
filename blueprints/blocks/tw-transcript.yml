@@ -1,0 +1,29 @@
+name: Transkript
+icon: audio
+
+fields:
+  headline:
+    type: text
+    label: Headline
+    default: Transkript
+  intro:
+    type: textarea
+    label: Intro
+  repeatSpeakerPerSegment:
+    type: toggle
+    label: Repeat Speaker
+    default: false
+  segments:
+    type: structure
+    label: Segments
+    fields:
+      speaker:
+        type: text
+        label: Speaker
+      timestamp:
+        type: text
+        label: Timestamp
+      text:
+        type: textarea
+        label: Text
+

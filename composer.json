@@ -1,0 +1,21 @@
+{
+  "name": "tw/kirby-tw-transcript",
+  "description": "Kirby TW Transcript (by Technikwuerze)",
+  "type": "kirby-plugin",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Technikwuerze",
+      "email": "info@technikwuerze.de"
+    }
+  ],
+  "require": {
+    "php": ">=8.2",
+    "getkirby/cms": "^5.0"
+  },
+  "extra": {
+    "kirby": {
+      "install": true
+    }
+  }
+}

@@ -1,0 +1,155 @@
+/* Frontend styles for .tw-transcript component */
+
+@scope (.tw-transcript) {
+  :scope {
+    margin-block: var(--sp-l);
+
+    h2 {
+      margin-block: 0 0.5rem;
+    }
+
+    .tw-transcript-intro {
+      color: var(--clr-text-light);
+      margin-block-end: var(--sp);
+    }
+
+    .tw-transcript-global-speaker {
+      margin-block: 0 var(--sp-s);
+      color: var(--clr-text-light);
+      font-size: var(--fs-s);
+    }
+
+    .tw-transcript-global-speaker-label {
+      font-weight: var(--fw-medium);
+      margin-inline-end: 0.35rem;
+    }
+
+    .tw-transcript-segments {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: var(--sp);
+    }
+
+    .tw-transcript-segment {
+      margin: 0;
+      padding-block-start: 0.9rem;
+      border-block-start: 1px solid var(--clr-border-bright);
+      scroll-margin-top: calc(var(--header-size) + var(--sp) + var(--sp));
+    }
+
+    .tw-transcript-segment-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.5rem 0.75rem;
+      margin-block-end: 0.45rem;
+    }
+
+    .tw-transcript-speaker {
+      font-weight: var(--fw-bold);
+      color: var(--clr-secondary);
+    }
+
+    .tw-transcript-timestamp {
+      --tw-transcript-timestamp-icon-bg: var(--clr-primary);
+      --tw-transcript-timestamp-icon-fg: var(--clr-bg-light);
+
+      appearance: none;
+      background: color-mix(in srgb, var(--clr-primary) 10%, transparent);
+      border: 1px solid color-mix(in srgb, var(--clr-primary) 35%, var(--clr-border-bright));
+      border-radius: 999px;
+      padding-block: 0.2rem;
+      padding-inline: 0.52rem 0.72rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.42rem;
+      cursor: pointer;
+      color: var(--clr-primary);
+      font-size: var(--fs-xs);
+      font-weight: var(--fw-medium);
+      font-family: inherit;
+      white-space: nowrap;
+      transition: background-color var(--transition-short), border-color var(--transition-short),
+        color var(--transition-short), box-shadow var(--transition-short),
+        transform var(--transition-short);
+
+      .tw-transcript-timestamp-icon {
+        flex: 0 0 auto;
+        width: 0.92rem;
+        height: 0.92rem;
+        border-radius: 50%;
+        background: var(--tw-transcript-timestamp-icon-bg);
+        position: relative;
+        opacity: 0.96;
+        transition: background-color var(--transition-short), opacity var(--transition-short),
+          transform var(--transition-short);
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: 0.34rem;
+          top: 50%;
+          width: 0;
+          height: 0;
+          border-style: solid;
+          border-width: 0.16rem 0 0.16rem 0.26rem;
+          border-color: transparent transparent transparent
+            var(--tw-transcript-timestamp-icon-fg);
+          transform: translateY(-50%);
+          transition: border-left-color var(--transition-short),
+            transform var(--transition-short), opacity var(--transition-short);
+        }
+      }
+
+      &:hover,
+      &:focus-visible {
+        background: color-mix(in srgb, var(--clr-primary) 18%, transparent);
+        border-color: var(--clr-primary);
+        box-shadow: 0 0 0 0.24rem color-mix(in srgb, var(--clr-primary) 18%, transparent);
+        transform: translateY(-1px);
+
+        .tw-transcript-timestamp-icon {
+          opacity: 1;
+
+          &::before {
+            transform: translate(0.03rem, -50%);
+          }
+        }
+      }
+
+      &:focus-visible {
+        outline: none;
+      }
+
+      &[data-player-pending="1"] {
+        border-style: dashed;
+        color: color-mix(in srgb, var(--clr-primary) 78%, var(--clr-text-light));
+        opacity: 0.7;
+      }
+
+      &[data-player-active="1"],
+      &[aria-current="true"] {
+        --tw-transcript-timestamp-icon-bg: var(--clr-text-bright);
+        --tw-transcript-timestamp-icon-fg: var(--clr-primary);
+
+        background: var(--clr-primary);
+        border-color: var(--clr-primary);
+        box-shadow: 0 0 0 0.24rem color-mix(in srgb, var(--clr-primary) 24%, transparent);
+        color: var(--clr-text-bright);
+        font-weight: var(--fw-bold);
+
+        .tw-transcript-timestamp-icon {
+          opacity: 1;
+        }
+      }
+    }
+
+    .tw-transcript-content {
+      p:last-child {
+        margin-block-end: 0;
+      }
+    }
+  }
+}
