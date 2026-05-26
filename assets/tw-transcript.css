@@ -1,26 +1,44 @@
 /* Frontend styles for .tw-transcript component */
 
+/* Plugin defaults — override these in your own stylesheet */
+:root {
+  --tw-transcript-accent: hsl(130 60% 30%);
+  --tw-transcript-on-accent: hsl(0 0% 100%);
+  --tw-transcript-speaker-color: hsl(260 60% 50%);
+  --tw-transcript-text-muted: hsl(0 0% 40%);
+  --tw-transcript-border-color: hsl(0 0% 0% / 0.12);
+  --tw-transcript-spacing-block: 3rem;
+  --tw-transcript-spacing-gap: 1.5rem;
+  --tw-transcript-spacing-sm: 1.25rem;
+  --tw-transcript-scroll-offset: 5rem;
+  --tw-transcript-font-size-sm: 1rem;
+  --tw-transcript-font-size-xs: 0.875rem;
+  --tw-transcript-font-weight-medium: 500;
+  --tw-transcript-font-weight-bold: 600;
+  --tw-transcript-transition: 90ms ease-out;
+}
+
 @scope (.tw-transcript) {
   :scope {
-    margin-block: var(--sp-l);
+    margin-block: var(--tw-transcript-spacing-block);
 
     h2 {
       margin-block: 0 0.5rem;
     }
 
     .tw-transcript-intro {
-      color: var(--clr-text-light);
-      margin-block-end: var(--sp);
+      color: var(--tw-transcript-text-muted);
+      margin-block-end: var(--tw-transcript-spacing-gap);
     }
 
     .tw-transcript-global-speaker {
-      margin-block: 0 var(--sp-s);
-      color: var(--clr-text-light);
-      font-size: var(--fs-s);
+      margin-block: 0 var(--tw-transcript-spacing-sm);
+      color: var(--tw-transcript-text-muted);
+      font-size: var(--tw-transcript-font-size-sm);
     }
 
     .tw-transcript-global-speaker-label {
-      font-weight: var(--fw-medium);
+      font-weight: var(--tw-transcript-font-weight-medium);
       margin-inline-end: 0.35rem;
     }
 
@@ -29,14 +47,14 @@
       padding: 0;
       margin: 0;
       display: grid;
-      gap: var(--sp);
+      gap: var(--tw-transcript-spacing-gap);
     }
 
     .tw-transcript-segment {
       margin: 0;
       padding-block-start: 0.9rem;
-      border-block-start: 1px solid var(--clr-border-bright);
-      scroll-margin-top: calc(var(--header-size) + var(--sp) + var(--sp));
+      border-block-start: 1px solid var(--tw-transcript-border-color);
+      scroll-margin-top: var(--tw-transcript-scroll-offset);
     }
 
     .tw-transcript-segment-meta {
@@ -48,17 +66,18 @@
     }
 
     .tw-transcript-speaker {
-      font-weight: var(--fw-bold);
-      color: var(--clr-secondary);
+      font-weight: var(--tw-transcript-font-weight-bold);
+      color: var(--tw-transcript-speaker-color);
     }
 
     .tw-transcript-timestamp {
-      --tw-transcript-timestamp-icon-bg: var(--clr-primary);
-      --tw-transcript-timestamp-icon-fg: var(--clr-bg-light);
+      --tw-transcript-timestamp-icon-bg: var(--tw-transcript-accent);
+      --tw-transcript-timestamp-icon-fg: var(--tw-transcript-on-accent);
 
       appearance: none;
-      background: color-mix(in srgb, var(--clr-primary) 10%, transparent);
-      border: 1px solid color-mix(in srgb, var(--clr-primary) 35%, var(--clr-border-bright));
+      background: color-mix(in srgb, var(--tw-transcript-accent) 10%, transparent);
+      border: 1px solid
+        color-mix(in srgb, var(--tw-transcript-accent) 35%, var(--tw-transcript-border-color));
       border-radius: 999px;
       padding-block: 0.2rem;
       padding-inline: 0.52rem 0.72rem;
@@ -66,17 +85,17 @@
       align-items: center;
       gap: 0.42rem;
       cursor: pointer;
-      color: var(--clr-primary);
-      font-size: var(--fs-xs);
-      font-weight: var(--fw-medium);
+      color: var(--tw-transcript-accent);
+      font-size: var(--tw-transcript-font-size-xs);
+      font-weight: var(--tw-transcript-font-weight-medium);
       font-family: inherit;
       white-space: nowrap;
       transition:
-        background-color var(--transition-short),
-        border-color var(--transition-short),
-        color var(--transition-short),
-        box-shadow var(--transition-short),
-        transform var(--transition-short);
+        background-color var(--tw-transcript-transition),
+        border-color var(--tw-transcript-transition),
+        color var(--tw-transcript-transition),
+        box-shadow var(--tw-transcript-transition),
+        transform var(--tw-transcript-transition);
 
       .tw-transcript-timestamp-icon {
         flex: 0 0 auto;
@@ -87,9 +106,9 @@
         position: relative;
         opacity: 0.96;
         transition:
-          background-color var(--transition-short),
-          opacity var(--transition-short),
-          transform var(--transition-short);
+          background-color var(--tw-transcript-transition),
+          opacity var(--tw-transcript-transition),
+          transform var(--tw-transcript-transition);
 
         &::before {
           content: '';
@@ -103,17 +122,17 @@
           border-color: transparent transparent transparent var(--tw-transcript-timestamp-icon-fg);
           transform: translateY(-50%);
           transition:
-            border-left-color var(--transition-short),
-            transform var(--transition-short),
-            opacity var(--transition-short);
+            border-left-color var(--tw-transcript-transition),
+            transform var(--tw-transcript-transition),
+            opacity var(--tw-transcript-transition);
         }
       }
 
       &:hover,
       &:focus-visible {
-        background: color-mix(in srgb, var(--clr-primary) 18%, transparent);
-        border-color: var(--clr-primary);
-        box-shadow: 0 0 0 0.24rem color-mix(in srgb, var(--clr-primary) 18%, transparent);
+        background: color-mix(in srgb, var(--tw-transcript-accent) 18%, transparent);
+        border-color: var(--tw-transcript-accent);
+        box-shadow: 0 0 0 0.24rem color-mix(in srgb, var(--tw-transcript-accent) 18%, transparent);
         transform: translateY(-1px);
 
         .tw-transcript-timestamp-icon {
@@ -131,20 +150,20 @@
 
       &[data-player-pending='1'] {
         border-style: dashed;
-        color: color-mix(in srgb, var(--clr-primary) 78%, var(--clr-text-light));
+        color: color-mix(in srgb, var(--tw-transcript-accent) 78%, var(--tw-transcript-text-muted));
         opacity: 0.7;
       }
 
       &[data-player-active='1'],
       &[aria-current='true'] {
-        --tw-transcript-timestamp-icon-bg: var(--clr-text-bright);
-        --tw-transcript-timestamp-icon-fg: var(--clr-primary);
+        --tw-transcript-timestamp-icon-bg: var(--tw-transcript-on-accent);
+        --tw-transcript-timestamp-icon-fg: var(--tw-transcript-accent);
 
-        background: var(--clr-primary);
-        border-color: var(--clr-primary);
-        box-shadow: 0 0 0 0.24rem color-mix(in srgb, var(--clr-primary) 24%, transparent);
-        color: var(--clr-text-bright);
-        font-weight: var(--fw-bold);
+        background: var(--tw-transcript-accent);
+        border-color: var(--tw-transcript-accent);
+        box-shadow: 0 0 0 0.24rem color-mix(in srgb, var(--tw-transcript-accent) 24%, transparent);
+        color: var(--tw-transcript-on-accent);
+        font-weight: var(--tw-transcript-font-weight-bold);
 
         .tw-transcript-timestamp-icon {
           opacity: 1;

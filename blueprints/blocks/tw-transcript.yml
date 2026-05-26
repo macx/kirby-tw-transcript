@@ -1,28 +1,28 @@
-name: Transkript
+name: tw.transcript.block.name
 icon: audio
 
 fields:
   headline:
     type: text
-    label: Headline
+    label: tw.transcript.block.field.headline
     default: Transkript
   intro:
     type: textarea
-    label: Intro
+    label: tw.transcript.block.field.intro
   repeatSpeakerPerSegment:
     type: toggle
-    label: Repeat Speaker
+    label: tw.transcript.block.field.repeatSpeaker
     default: false
   segments:
     type: structure
-    label: Segments
+    label: tw.transcript.block.field.segments
     fields:
       speaker:
         type: text
-        label: Speaker
+        label: tw.transcript.block.field.speaker
       timestamp:
         type: text
-        label: Timestamp
+        label: tw.transcript.block.field.timestamp
       text:
         type: textarea
-        label: Text
+        label: tw.transcript.block.field.text

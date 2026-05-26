@@ -73,11 +73,15 @@ const twTranscriptEscapeHtml = (value) => {
     .replaceAll("'", '&#39;')
 }
 
-const twTranscriptText = (vm, key, fallback) => {
-  const translated = vm?.$t?.(key)
+const twTranscriptText = (vm, key, fallback, replacements = null) => {
+  const translated = replacements ? vm?.$t?.(key, replacements) : vm?.$t?.(key)
 
   if (typeof translated === 'string' && translated !== '' && translated !== key) {
     return translated
+  }
+
+  if (replacements && fallback) {
+    return twTranscriptInterpolate(fallback, replacements)
   }
 
   return fallback
@@ -136,33 +140,29 @@ const twTranscriptPreviewBlock = {
       return twTranscriptFormatDuration(maxSeconds)
     },
     repeatSpeakerLabel() {
-      return twTranscriptToBool(this.content.repeatSpeakerPerSegment)
+      return twTranscriptToBool(this.content.repeatspeakerpersegment)
         ? twTranscriptText(this, 'tw.transcript.preview.repeat.yes', 'Yes')
         : twTranscriptText(this, 'tw.transcript.preview.repeat.no', 'No')
     },
     segmentsLabel() {
-      return twTranscriptInterpolate(
-        twTranscriptText(this, 'tw.transcript.preview.segments', '{{ count }} segments'),
-        { count: this.count }
-      )
+      return twTranscriptText(this, 'tw.transcript.preview.segments', '{{ count }} segments', {
+        count: this.count,
+      })
     },
     speakersLabel() {
-      return twTranscriptInterpolate(
-        twTranscriptText(this, 'tw.transcript.preview.speakers', '{{ count }} speakers'),
-        { count: this.speakersCount }
-      )
+      return twTranscriptText(this, 'tw.transcript.preview.speakers', '{{ count }} speakers', {
+        count: this.speakersCount,
+      })
     },
     durationLabel() {
-      return twTranscriptInterpolate(
-        twTranscriptText(this, 'tw.transcript.preview.duration', 'Length: {{ duration }}'),
-        { duration: this.duration }
-      )
+      return twTranscriptText(this, 'tw.transcript.preview.duration', 'Length: {{ duration }}', {
+        duration: this.duration,
+      })
     },
     repeatLabel() {
-      return twTranscriptInterpolate(
-        twTranscriptText(this, 'tw.transcript.preview.repeat', 'Repeat names: {{ value }}'),
-        { value: this.repeatSpeakerLabel }
-      )
+      return twTranscriptText(this, 'tw.transcript.preview.repeat', 'Repeat names: {{ value }}', {
+        value: this.repeatSpeakerLabel,
+      })
     },
   },
   template: `
@@ -388,12 +388,10 @@ const twTranscriptImporterView = {
         }
 
         this.segments = Array.isArray(result.segments) ? result.segments : []
-        this.success = twTranscriptInterpolate(
-          twTranscriptText(
-            this,
-            'tw.transcript.success.detected',
-            '{{ count }} segments detected.'
-          ),
+        this.success = twTranscriptText(
+          this,
+          'tw.transcript.success.detected',
+          '{{ count }} segments detected.',
           { count: this.segments.length }
         )
         await this.searchEpisodes()
