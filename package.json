@@ -1,6 +1,6 @@
 {
   "name": "kirby-tw-transcript",
-  "version": "0.9.0-beta.0",
+  "version": "0.10.0-beta.1",
   "description": "Beta Kirby plugin for convenient import, management, and audio sync of podcast transcripts.",
   "private": true,
   "main": "index.js",
