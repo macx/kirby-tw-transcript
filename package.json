@@ -1,0 +1,29 @@
+{
+  "name": "kirby-tw-transcript",
+  "version": "0.9.0-beta.0",
+  "description": "Beta Kirby plugin for convenient import, management, and audio sync of podcast transcripts.",
+  "private": true,
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "release-it"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macx/kirby-tw-transcript.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/macx/kirby-tw-transcript/issues"
+  },
+  "homepage": "https://github.com/macx/kirby-tw-transcript#readme",
+  "devDependencies": {
+    "release-it": "^20.0.1"
+  }
+}
