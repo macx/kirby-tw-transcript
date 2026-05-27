@@ -180,6 +180,14 @@ php -r "
 - **Browser**: ES2020+, CSS Nesting support
 - **Podlove**: Web Player v5.x (async store-based API)
 
+## Release Readiness
+
+- Composer package name: `macx/kirby-tw-transcript`
+- Current release line: `0.9.x-dev` beta branch alias
+- Public install path: GitHub VCS now, Packagist later
+- Publication steps: update changelog, tag the plugin repo, publish the tag, then update the website repo to that released version
+- Release details: see [PUBLISHING.md](./PUBLISHING.md)
+
 ## Next Milestones
 
 - [ ] Migrate full TypeScript sync logic from main repo

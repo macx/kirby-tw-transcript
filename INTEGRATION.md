@@ -18,7 +18,7 @@ cd /Users/macx/Projects/macx/technikwuerze
 php -r "require 'kirby/bootstrap.php'; echo 'Plugins: ' . count(kirby()->plugins()) . PHP_EOL;"
 ```
 
-Expected: Plugin count ≥ 1 (including tw/podcast-transcript)
+Expected: Plugin count ≥ 1 (including macx/kirby-tw-transcript)
 
 ### 2. Update Episode Blueprint
 
@@ -32,7 +32,7 @@ blocks: fields/episode-blocks
 
 # OR directly:
 blocks:
-  - tw/podcast-transcript/blocks/transcript
+   - tw-transcript
   # ... other blocks
 ```
 
@@ -134,6 +134,7 @@ If issues arise:
 See:
 
 - [README.md](./README.md) - Feature overview
+- [PUBLISHING.md](./PUBLISHING.md) - Beta release and publishing flow
 - [MIGRATION.md](./MIGRATION.md) - Migration details
 - [DEVELOPMENT.md](./DEVELOPMENT.md) - Development guide
 - [example-transcript.txt](./example-transcript.txt) - Format reference

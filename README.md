@@ -1,6 +1,11 @@
 # Tw Podcast Transcript
 
-A Kirby plugin for convenient import, management, and audio sync of podcast transcripts.
+Beta Kirby plugin for convenient import, management, and audio sync of podcast transcripts.
+
+## Status
+
+This plugin currently tracks the beta release line and is prepared for Composer-based installation.
+The Git branch alias is `0.9.x-dev`, so the package can be consumed before the first stable 1.0 tag.
 
 ## Features
 
@@ -34,10 +39,17 @@ More text content
 ## Installation
 
 - Unzip to `site/plugins/kirby-tw-transcript`
-- Or install via Composer (recommended):
+- Or install via Composer from GitHub during beta:
 
 ```bash
-composer require technikwuerze/podcast-transcript
+composer config repositories.kirby-tw-transcript vcs https://github.com/macx/kirby-tw-transcript
+composer require macx/kirby-tw-transcript:"0.9.x-dev"
+```
+
+- Or install via Composer once published to Packagist:
+
+```bash
+composer require macx/kirby-tw-transcript:"^0.9@beta"
 ```
 
 ## Quickstart
@@ -46,6 +58,10 @@ composer require technikwuerze/podcast-transcript
 2. Upload TXT file or paste transcript text
 3. Review preview, select target episode, import
 4. Transcript saved as block and synced with player
+
+## Release Flow
+
+See [PUBLISHING.md](./PUBLISHING.md) for the exact beta, tagging, GitHub, and Composer release flow.
 
 ## License
 

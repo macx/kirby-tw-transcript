@@ -2,6 +2,13 @@
 
 All notable changes to the Tw Podcast Transcript plugin will be documented in this file.
 
+## [Unreleased]
+
+### Changed
+- Prepared the plugin for Composer distribution with beta release metadata.
+- Aligned the public install instructions to the GitHub repository and beta branch alias.
+- Added release workflow guidance for GitHub and Composer publishing.
+
 ## [1.0.0] - 2026-05-25
 
 ### Added

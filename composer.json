@@ -1,21 +1,50 @@
 {
-  "name": "tw/kirby-tw-transcript",
-  "description": "Kirby TW Transcript (by Technikwuerze)",
+  "name": "macx/kirby-tw-transcript",
+  "description": "Beta Kirby transcript plugin for Technikwuerze",
   "type": "kirby-plugin",
   "license": "MIT",
+  "homepage": "https://github.com/macx/kirby-tw-transcript",
+  "keywords": [
+    "kirby",
+    "kirby-plugin",
+    "transcript",
+    "podcast",
+    "podlove",
+    "panel"
+  ],
   "authors": [
     {
       "name": "Technikwuerze",
       "email": "info@technikwuerze.de"
     }
   ],
+  "support": {
+    "issues": "https://github.com/macx/kirby-tw-transcript/issues",
+    "source": "https://github.com/macx/kirby-tw-transcript",
+    "docs": "https://github.com/macx/kirby-tw-transcript#readme"
+  },
   "require": {
     "php": ">=8.2",
-    "getkirby/cms": "^5.0"
+    "getkirby/cms": "^5.0",
+    "getkirby/composer-installer": "^1.2"
+  },
+  "autoload": {
+    "classmap": [
+      "lib"
+    ]
   },
   "extra": {
+    "branch-alias": {
+      "dev-main": "0.9.x-dev"
+    },
     "kirby": {
       "install": true
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "allow-plugins": {
+      "getkirby/composer-installer": true
     }
   }
 }
