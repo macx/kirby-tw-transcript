@@ -144,6 +144,11 @@ const twTranscriptPreviewBlock = {
         ? twTranscriptText(this, 'tw.transcript.preview.repeat.yes', 'Yes')
         : twTranscriptText(this, 'tw.transcript.preview.repeat.no', 'No')
     },
+    isOpenLabel() {
+      return twTranscriptToBool(this.content.initialstate)
+        ? twTranscriptText(this, 'tw.transcript.preview.isopen.yes', 'Yes')
+        : twTranscriptText(this, 'tw.transcript.preview.isopen.no', 'No')
+    },
     segmentsLabel() {
       return twTranscriptText(this, 'tw.transcript.preview.segments', '{{ count }} segments', {
         count: this.count,
@@ -163,6 +168,17 @@ const twTranscriptPreviewBlock = {
       return twTranscriptText(this, 'tw.transcript.preview.repeat', 'Repeat names: {{ value }}', {
         value: this.repeatSpeakerLabel,
       })
+    },
+    openLabel() {
+      return twTranscriptText(this, 'tw.transcript.preview.isopen', 'Open: {{ value }}', {
+        value: this.isOpenLabel,
+      })
+    },
+    repeatIcon() {
+      return twTranscriptToBool(this.content.repeatspeakerpersegment) ? 'check' : 'cancel'
+    },
+    openIcon() {
+      return twTranscriptToBool(this.content.initialstate) ? 'check' : 'cancel'
     },
   },
   template: `
@@ -189,9 +205,13 @@ const twTranscriptPreviewBlock = {
           </p>
         </div>
         <div class="tw-transcript-preview__summary-card">
-          <p class="tw-transcript-preview__summary-value">
-            <k-icon type="refresh" class="tw-transcript-preview__summary-icon" />
+          <p class="tw-transcript-preview__summary-value" style="justify-content: space-between;">
             <span>{{ repeatLabel }}</span>
+            <k-icon :type="repeatIcon" class="tw-transcript-preview__summary-icon" />
+          </p>
+          <p class="tw-transcript-preview__summary-value" style="justify-content: space-between; margin-top: 0.25rem;">
+            <span>{{ openLabel }}</span>
+            <k-icon :type="openIcon" class="tw-transcript-preview__summary-icon" />
           </p>
         </div>
       </div>

@@ -38,10 +38,10 @@ Kirby::plugin('tw/transcript', [
   ],
 
   'hooks' => [
-    'page.update:after' => static function () {
+    'page.update:after' => function () {
       kirby()->cache('tw-transcript')->flush();
     },
-    'page.create:after' => static function () {
+    'page.create:after' => function () {
       kirby()->cache('tw-transcript')->flush();
     },
   ],

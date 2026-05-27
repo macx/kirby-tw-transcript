@@ -13,6 +13,15 @@ fields:
     type: toggle
     label: tw.transcript.block.field.repeatSpeaker
     default: false
+    width: 1/2
+  initialState:
+    type: toggle
+    label: tw.transcript.block.field.initialState
+    default: false
+    text:
+      - tw.transcript.block.field.initialState.closed
+      - tw.transcript.block.field.initialState.open
+    width: 1/2
   segments:
     type: structure
     label: tw.transcript.block.field.segments
