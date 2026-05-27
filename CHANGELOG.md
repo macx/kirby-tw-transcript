@@ -5,6 +5,7 @@ All notable changes to the Tw Podcast Transcript plugin will be documented in th
 ## [Unreleased]
 
 ### Changed
+
 - Prepared the plugin for Composer distribution with beta release metadata.
 - Aligned the public install instructions to the GitHub repository and beta branch alias.
 - Added release workflow guidance for GitHub and Composer publishing.
@@ -12,6 +13,7 @@ All notable changes to the Tw Podcast Transcript plugin will be documented in th
 ## [1.0.0] - 2026-05-25
 
 ### Added
+
 - Initial plugin release with transcript block (blueprint, snippet, CSS)
 - Panel area for transcript import (TXT upload or paste)
 - Transcript parser with timestamp and speaker extraction
@@ -22,11 +24,13 @@ All notable changes to the Tw Podcast Transcript plugin will be documented in th
 - Full audio sync logic with manual seek detection
 
 ### Changed
+
 - Extracted transcript block from main technikwuerze plugin
 - Consolidated transcript/audio sync logic into dedicated plugin
 - Updated block rendering to use English labels where applicable
 
 ### Fixed
+
 - Redundant speaker names in single-speaker transcripts (global display option)
 - False jump to end of track on manual segment seek
 
